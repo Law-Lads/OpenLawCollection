@@ -6,7 +6,7 @@
   import { httpGet } from "../common/api.js";
 
   let books = [];
-  onMount(async function() {
+  onMount(async function () {
     const { data } = await httpGet("/?_sort=id&_order=desc");
     books = data;
   });
@@ -32,14 +32,11 @@
 </style>
 
 <header>
-  <span class="preamble">Welcome to the</span>
-  <h1>Library</h1>
+  <span class="preamble">Open Library Collection</span>
+  <h1>Law Lads</h1>
 </header>
 
-<p class="greeting">
-  This is a library for the people. Welcome. Read the books here. Be inspired.
-  Go home, and share them with your family.
-</p>
+<p class="greeting">This is a library for the people.</p>
 
 <Button to="/create">+ Add Book</Button>
 

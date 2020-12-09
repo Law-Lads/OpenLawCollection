@@ -11,7 +11,7 @@
 
   let book = {};
 
-  onMount(async _ => {
+  onMount(async (_) => {
     const { data } = await httpGet("/" + id);
     book = data;
   });
@@ -19,7 +19,7 @@
   async function handleFavoriteClick() {
     const toggledBook = {
       ...book,
-      favorite: !book.favorite
+      favorite: !book.favorite,
     };
     const { ok } = await httpPut("/" + book.id, toggledBook);
     if (ok) {
@@ -55,14 +55,18 @@
 <div class="detail">
   <div class="cover">
     <BookCover {book} />
-    <div class="favorite">
-      <Button on:click={handleFavoriteClick}>
-        {book.favorite ? 'Unfavorite' : 'Favorite'}
-      </Button>
-    </div>
+    <div class="favorite" />
   </div>
   <div>
     <Header>About</Header>
     <p>{book.about}</p>
+    <Header>Price</Header>
+    <p>${book.price}</p>
+    <Button on:click={handleFavoriteClick}>
+      {book.favorite ? 'Unfavorite' : 'Favorite'}
+    </Button>
+    <Button on:click={handleFavoriteClick}>
+      {book.favorite ? 'Purchased' : 'Purchase'}
+    </Button>
   </div>
 </div>
